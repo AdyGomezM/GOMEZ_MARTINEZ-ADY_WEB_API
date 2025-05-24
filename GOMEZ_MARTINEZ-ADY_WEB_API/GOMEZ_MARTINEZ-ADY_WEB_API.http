@@ -1,0 +1,6 @@
+@GOMEZ_MARTINEZ_ADY_WEB_API_HostAddress = http://localhost:5209
+
+GET {{GOMEZ_MARTINEZ_ADY_WEB_API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
