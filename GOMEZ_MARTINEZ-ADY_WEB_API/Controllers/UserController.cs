@@ -24,7 +24,7 @@ namespace GOMEZ_MARTINEZ_ADY_WEB_API.Controllers
             // Llama al servicio para obtener todos los usuarios
             var users = await _userServices.GetUsers();
 
-            // Retorna la lista de usuarios con estado 200 OK
+            // Retorna la lista de usuarios 
             return Ok(users);
         }
 
@@ -32,14 +32,14 @@ namespace GOMEZ_MARTINEZ_ADY_WEB_API.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetUser(int id)
         {
-            // Llama al servicio para obtener un usuario por ID
+            // Llama al servicio para obtener un usuario 
             var user = await _userServices.GetByIdUser(id);
 
             // Si no se encuentra, retorna 404 Not Found
             if (user == null)
                 return NotFound($"No se encontró un usuario con ID {id}.");
 
-            // Retorna el usuario encontrado con estado 200 OK
+            // Retorna el usuario encontrado 
             return Ok(user);
         }
 
@@ -73,7 +73,7 @@ namespace GOMEZ_MARTINEZ_ADY_WEB_API.Controllers
             if (updatedUser == null)
                 return NotFound($"No se pudo actualizar el usuario con ID {id}.");
 
-            // Retorna el usuario actualizado con estado 200 OK
+            // Retorna el usuario actualizado 
             return Ok(updatedUser);
         }
 
@@ -88,7 +88,7 @@ namespace GOMEZ_MARTINEZ_ADY_WEB_API.Controllers
             if (!deleted)
                 return NotFound($"No se encontró el usuario con ID {id} para eliminar.");
 
-            // Retorna mensaje de éxito con estado 200 OK
+            // Retorna mensaje de éxito
             return Ok(new { message = $"Usuario con ID {id} eliminado correctamente." });
         }
     }

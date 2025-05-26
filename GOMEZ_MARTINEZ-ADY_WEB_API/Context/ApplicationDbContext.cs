@@ -35,24 +35,24 @@ namespace GOMEZ_MARTINEZ_ADY_WEB_API.Context
                 new User
                 {
                     PKUser = 1,
-                    Name = "David",
-                    Username = "davi",
+                    Name = "Ady",
+                    Username = "Ady",
                     Password = "123",
-                    FKRol = 2 // Asegúrate de que esta clave foránea corresponde a un Rol existente
+                    FKRol = 2 // Asegúrarnos de que esta clave foránea corresponde a un Rol existente
                 },
                 new User
                 {
                     PKUser = 2,
-                    Name = "Jorge",
-                    Username = "joge",
+                    Name = "Josue",
+                    Username = "Jou",
                     Password = "123",
                     FKRol = 1
                 },
                 new User
                 {
                     PKUser = 3,
-                    Name = "Yeriel",
-                    Username = "cupi",
+                    Name = "Cynthia",
+                    Username = "Cynti",
                     Password = "123",
                     FKRol = 1
                 });

@@ -1,97 +1,106 @@
-﻿using Domain.DTO;
-using Domain.Entities;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿
+using Domain.DTO; 
+using Domain.Entities; 
+using Microsoft.AspNetCore.Http; 
+using Microsoft.AspNetCore.Mvc; 
 using GOMEZ_MARTINEZ_ADY_WEB_API.Services.IServices;
-using GOMEZ_MARTINEZ_ADY_WEB_API.Services.Services;
+using GOMEZ_MARTINEZ_ADY_WEB_API.Services.Services; 
 
 namespace GOMEZ_MARTINEZ_ADY_WEB_API.Controllers
 {
+    // Indicamos que esta clase es un controlador de API.
     [ApiController]
+
+    // Definimos la ruta base del controlador. Por defecto será: /Rol
     [Route("[controller]")]
     public class RolController : Controller
     {
+        // Creamos una variable para acceder a los métodos del servicio de roles.
         private readonly IRolServices _rolServices;
-        //Instancia la clase IRolServices en todo el proyecto para usar todos lo metodos creados
+
+        // Constructor del controlador, donde inyectamos el servicio de roles.
+        // Así podemos usar sus métodos en todo el controlador.
         public RolController(IRolServices rolServices)
         {
             _rolServices = rolServices;
         }
 
-        // Obtener todos los roles
+        //metodos del controlador
+
+        // Obtener todos los roles registrados en la base de datos.
         [HttpGet]
         public async Task<IActionResult> GetRols()
         {
-            // Llama al servicio para obtener la lista de roles
+            // Llamamos al servicio que obtiene todos los roles.
             var rols = await _rolServices.GetRols();
 
-            // Retorna la lista de roles con estado 200 OK
+            // Devolvemos la lista con estado 200 OK.
             return Ok(rols);
         }
 
-        // Obtener un rol por ID
+        // Obtener un solo rol por su ID.
+        // Por ejemplo: /Rol/2
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetRol(int id)
         {
-            // Llama al servicio para obtener un rol específico por ID
+            // Llamamos al servicio para buscar el rol por ID.
             var rol = await _rolServices.GetByIdRol(id);
 
-            // Si no se encuentra el rol, retorna 404 Not Found
+            // Si no existe, devolvemos un mensaje con 404 Not Found.
             if (rol == null)
                 return NotFound($"No se encontró un rol con ID {id}.");
 
-            // Retorna el rol encontrado con estado 200 OK
+            // Si sí existe, devolvemos el rol con estado 200 OK.
             return Ok(rol);
         }
 
-        // Crear un nuevo rol
+        // Crear un nuevo rol en la base de datos.
         [HttpPost("crear")]
         public async Task<IActionResult> PostRol([FromBody] Rol request)
         {
-            // Verifica que el modelo recibido sea válido
+            // Validamos que los datos enviados sean correctos.
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+                return BadRequest(ModelState); // Si hay error, devolvemos un 400 Bad Request.
 
-            // Llama al servicio para crear el nuevo rol
+            // Usamos el servicio para guardar el nuevo rol.
             var createdRol = await _rolServices.CreateRol(request);
 
-            // Retorna estado 201 Created con la ruta al nuevo recurso
+            // Devolvemos estado 201 Created con la ubicación del nuevo rol.
             return CreatedAtAction(nameof(GetRol), new { id = createdRol.PKRol }, createdRol);
         }
 
-        // Actualizar un rol existente
+        // Actualizar un rol existente.
         [HttpPut("editar/{id:int}")]
         public async Task<IActionResult> PutRol(int id, [FromBody] Rol request)
         {
-            // Verifica que el ID de la URL coincida con el del cuerpo del request
+            // Verificamos que el ID enviado en la URL coincida con el del cuerpo del mensaje.
             if (id != request.PKRol)
                 return BadRequest("El ID en la URL no coincide con el ID del cuerpo.");
 
-            // Llama al servicio para actualizar el rol
+            // Llamamos al servicio para actualizar el rol.
             var updatedRol = await _rolServices.EditRol(request);
 
-            // Si no se pudo actualizar (rol no encontrado), retorna 404 Not Found
+            // Si no se encontró el rol, devolvemos un 404 Not Found.
             if (updatedRol == null)
                 return NotFound($"No se pudo actualizar el rol con ID {id}.");
 
-            // Retorna el rol actualizado con estado 200 OK
+            // Si todo salió bien, devolvemos el rol actualizado con estado 200 OK.
             return Ok(updatedRol);
         }
 
-        // Eliminar un rol
+        // Eliminar un rol de la base de datos.
         [HttpDelete("eliminar/{id:int}")]
         public async Task<IActionResult> DeleteRol(int id)
         {
-            // Llama al servicio para eliminar el rol por ID
+            // Llamamos al servicio para eliminar el rol.
             var deleted = await _rolServices.DeleteRol(id);
 
-            // Si no se eliminó (rol no encontrado), retorna 404 Not Found
+            // Si no se encontró el rol, devolvemos 404 Not Found.
             if (!deleted)
                 return NotFound($"No se encontró el rol con ID {id} para eliminar.");
 
-            // Retorna mensaje de éxito con estado 200 OK
+            // Si se eliminó correctamente, mostramos un mensaje con estado 200 OK.
             return Ok(new { message = $"Rol con ID {id} eliminado correctamente." });
         }
-
     }
 }
