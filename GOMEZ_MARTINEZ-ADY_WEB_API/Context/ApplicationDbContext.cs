@@ -5,13 +5,16 @@ namespace GOMEZ_MARTINEZ_ADY_WEB_API.Context
 {
     public class ApplicationDbContext : DbContext
     {
+        // // Constructor de la clase. Aquí se le pasan las opciones necesarias para configurar la conexión a la base de datos.
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
 
+        // Aquí se definen las tablas de la base de datos como propiedades DbSet.
         public DbSet<User> Users { get; set; }
         public DbSet<Rol> Roles { get; set; }
 
+        // Este método se usa para configurar el modelo de la base de datos, como las relaciones entre tablas y los datos iniciales.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Insertar en tabla Roles
