@@ -60,9 +60,9 @@ namespace GOMEZ_MARTINEZ_ADY_WEB_API.Migrations
                 columns: new[] { "PKUser", "FKRol", "Name", "Password", "Username" },
                 values: new object[,]
                 {
-                    { 1, 2, "David", "123", "davi" },
-                    { 2, 1, "Jorge", "123", "joge" },
-                    { 3, 1, "Yeriel", "123", "cupi" }
+                    { 1, 2, "Ady", "123", "Ady" },
+                    { 2, 1, "Josue", "123", "Jou" },
+                    { 3, 1, "Cynthia", "123", "Cynti" }
                 });
 
             migrationBuilder.CreateIndex(

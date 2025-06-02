@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GOMEZ_MARTINEZ_ADY_WEB_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250525225727_Example")]
+    [Migration("20250602220739_Example")]
     partial class Example
     {
         /// <inheritdoc />
@@ -88,25 +88,25 @@ namespace GOMEZ_MARTINEZ_ADY_WEB_API.Migrations
                         {
                             PKUser = 1,
                             FKRol = 2,
-                            Name = "David",
+                            Name = "Ady",
                             Password = "123",
-                            Username = "davi"
+                            Username = "Ady"
                         },
                         new
                         {
                             PKUser = 2,
                             FKRol = 1,
-                            Name = "Jorge",
+                            Name = "Josue",
                             Password = "123",
-                            Username = "joge"
+                            Username = "Jou"
                         },
                         new
                         {
                             PKUser = 3,
                             FKRol = 1,
-                            Name = "Yeriel",
+                            Name = "Cynthia",
                             Password = "123",
-                            Username = "cupi"
+                            Username = "Cynti"
                         });
                 });
 
