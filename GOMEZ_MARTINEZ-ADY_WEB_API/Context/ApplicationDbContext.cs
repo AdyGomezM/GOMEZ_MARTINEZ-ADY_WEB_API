@@ -12,7 +12,7 @@ namespace GOMEZ_MARTINEZ_ADY_WEB_API.Context
 
         // Aquí se definen las tablas de la base de datos como propiedades DbSet.
         public DbSet<User> Users { get; set; }
-        public DbSet<Rol> Roles { get; set; }
+        public DbSet<Rol> Roles { get; set; } 
 
         // Este método se usa para configurar el modelo de la base de datos, como las relaciones entre tablas y los datos iniciales.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
