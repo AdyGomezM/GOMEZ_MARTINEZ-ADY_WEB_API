@@ -4,10 +4,12 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Http; 
 using Microsoft.AspNetCore.Mvc; 
 using GOMEZ_MARTINEZ_ADY_WEB_API.Services.IServices;
-using GOMEZ_MARTINEZ_ADY_WEB_API.Services.Services; 
+using GOMEZ_MARTINEZ_ADY_WEB_API.Services.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GOMEZ_MARTINEZ_ADY_WEB_API.Controllers
 {
+    [Authorize]
     // Indicamos que esta clase es un controlador de API.
     [ApiController]
 

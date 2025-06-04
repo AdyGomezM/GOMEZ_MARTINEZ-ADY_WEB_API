@@ -3,9 +3,12 @@ using GOMEZ_MARTINEZ_ADY_WEB_API.Services.IServices;
 using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.DTO;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace GOMEZ_MARTINEZ_ADY_WEB_API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UserController : ControllerBase
